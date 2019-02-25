@@ -6,8 +6,12 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-router.get('/story', (req, res, next) => {
-  res.render('story');
+router.get('/upload', (req, res, next) => {
+  res.render('newStory');
+});
+
+router.get('/profile', (req, res, next) => {
+  res.render('profile');
 });
 
 
