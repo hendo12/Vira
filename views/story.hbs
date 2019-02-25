@@ -1,0 +1,30 @@
+<h2>Upload New Story</h2>
+<br><br>
+
+<form action="/story" method="POST" id="form-container">
+  <label for="title">Title</label>
+  <br><br>
+  <input id="title" type="text" name="title" placeholder="The Human Torch was approved a bank loan">
+  <br><br>
+
+  <label for="description">Description</label>
+  <br><br>
+  <input id="description" type="text" name="text" placeholder="Story here">
+
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <label for="sources">Sources</label>
+  <br><br>
+  <input id="sources" type="text" name="sources" placeholder="Place links here">
+  <br><br>
+
+  <label for="images">Images</label>
+  <input id="images" type="image" name="image" placeholder="Images here">
+  <br><br>
+
+  <button>Submit</button>
+
+</form>

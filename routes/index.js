@@ -6,6 +6,10 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
+router.get('/story', (req, res, next) => {
+  res.render('story');
+});
+
 
 
 module.exports = router;

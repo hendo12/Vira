@@ -4,7 +4,11 @@ const Schema   = mongoose.Schema;
 
 const userSchema = new Schema({
   username: String,
-  password: String
+  password: String, 
+  points: Number,
+  avatarURL: {
+    type: String, default: 'public/images/defaultUser.jpeg'
+  },
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });
