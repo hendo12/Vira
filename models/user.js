@@ -7,7 +7,7 @@ const userSchema = new Schema({
   password: String, 
   points: Number,
   avatarURL: {
-    type: String, default: 'public/images/defaultUser.jpeg'
+    type: String, default: '/images/defaultUser.jpeg'
   },
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }

@@ -1,12 +1,25 @@
-<h1>{{title}}</h1>
+<nav>
+  <a href="index"><h1>{{title}}</h1></a>
+  <a href="profile"><button>Profile</button></a>
+  <a href="upload"><button>Upload</button></a>
+</nav>
+
+<br><br>
+
 <p>Welcome to {{title}}</p>
 
+<br><br>
+
 <label for="Top Stories">Top Stories</label>
-<div class="responsive">
-  <div>your content</div>
-  <div>your content</div>
-  <div>your content</div>
-</div>
+
+{{#each storiesToHBS}}b
+  <div class="responsive">
+    <a href="story"><div>{{title}}</div></a>
+    <div>{{text}}</div>
+    <div>your content</div>
+  </div>
+{{/each}}
+
 
 <br><br>
 
