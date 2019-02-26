@@ -1,7 +1,7 @@
 <h2>Upload New Story</h2>
 <br><br>
 
-<form action="/story" method="POST" id="form-container">
+<form action="/upload" method="POST" id="form-container" enctype="multipart/form-data">
   <label for="title">Title</label>
   <br><br>
   <input id="title" type="text" name="title" placeholder="The Human Torch was approved a bank loan">
@@ -21,11 +21,17 @@
   <input id="sources" type="text" name="sources" placeholder="Place links here">
   <br><br>
 
-  <label for="images">Images</label>
+  {{!-- <label for="images">Image</label>
   <br><br>
   <input id="images" type="image" name="image" placeholder="Images here">
   <br><br>
 
-  <button>Submit</button>
+  <button>Submit</button> --}}
+
+  <label for="image">Image</label>
+  <br><br>
+  <input type="file" name="photo">
+  <br><br>
+  <input type="submit" value="Save">
 
 </form>

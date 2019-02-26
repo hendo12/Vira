@@ -1,8 +1,3 @@
-<nav>
-  <a href="index"><h1>{{title}}</h1></a>
-  <a href="profile"><button>Profile</button></a>
-  <a href="upload"><button>Upload</button></a>
-</nav>
 
 <br><br>
 
@@ -12,12 +7,13 @@
 
 <label for="Top Stories">Top Stories</label>
 
-{{#each storiesToHBS}}b
-  <div class="responsive">
-    <a href="story"><div>{{title}}</div></a>
-    <div>{{text}}</div>
-    <div>your content</div>
+{{#each storiesToHBS}}
+  <div class="responsive story">
+    <img src="{{this.image}}">
+    <a href="story" class="bottomRight"><div>{{title}}</div></a>
   </div>
+{{else}}
+  <p>There are no posts to show right now!</p>
 {{/each}}
 
 
