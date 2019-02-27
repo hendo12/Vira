@@ -95,13 +95,13 @@ router.post('/upload', uploadCloud.single('photo'), isLoggedIn, (req, res, next)
 router.get('/profile', isLoggedIn, (req, res, next) => {
   console.log('dontthinkwe ar ehere ')
   Story.find({user_id:req.user._id}).then(userStories => { //Find all stories that belong to user
-    User.findOne({'_id': req.user._id})
-    .then(theUser => {
-      console.log(212313,theUser, userStories)
-      // console.log('Retrieved books from DB:', allTheBooksFromDB);
-      res.render('profile', { user: theUser, stories:userStories}); //Sent those stories to hbs file 
-    })
-    .catch(error => {
+    User.findOne({'_id': req.user._id}).then(theUser => {
+      Comment.find({user_id:req.user._id}).then(userComments => {
+        console.log(212313,theUser, userStories)
+        // console.log('Retrieved books from DB:', allTheBooksFromDB);
+        res.render('profile', { user: theUser, stories:userStories, comments:userComments}); //Sent those stories to hbs file 
+      })
+    }).catch(error => {
       console.log('Error while getting the books from the DB: ', error);
     })
   })
