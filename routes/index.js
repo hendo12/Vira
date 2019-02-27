@@ -21,20 +21,50 @@ router.get('/', (req, res, next) => {
   })
 });
 
-router.get('/upload', (req, res, next) => {
+router.get('/upload', isLoggedIn, (req, res, next) => {
   res.render('upload');
 });
-
-router.get('/story', (req, res, next) => {
-  res.render('story');
+            //y98gig8472gyu23gg
+            //story/profile
+router.get('/story/:watermelon', (req, res, next) => {
+  Story.findOne({'_id': req.params.watermelon})
+  .then(theStory => {
+    console.log(444444, req.params.storyId)
+    res.render('story', { story: theStory });
+  })
+  .catch(error => {
+    console.log('Error while retrieving story: ', error);
+  })
 });
 
-// router.post('/story', (req, res, next) => {
-//   console.log('jhbjbjhb',req.body, req.params);
-//   Story.create(req.body).then(response => {
-//     res.redirect('story');
+//post comment on story
+
+// router.post('/story/:id', isLoggedIn, (req, res, next) => {
+//   const comment = new Comment({user_id, comment})
+//   comment.save()
+//   .then(commentSaved => {
+//     res.redirect()
 //   })
-// });
+// })
+
+//Edit story
+
+// router.push('/story/:id', (req, res, next) =>
+//   Story.findOneAndUpdate({'_id':req.params.id})
+//   .then())
+
+//delete story
+
+router.post('/delete/:id', (req, res, next) => { //Listengin to profile.hbs for the acton 'delete/someid8787huhu'
+  Story.remove({'_id': req.params.id}) //remove story by id
+  .then(theStory => {
+    console.log(444444, req.params.storyId)
+    res.redirect('../profile');
+  })
+  .catch(error => {
+    console.log('Error while deleting story: ', error);
+  })
+});
 
 router.post('/upload', uploadCloud.single('photo'), isLoggedIn, (req, res, next) => {
   const { title, description, sources} = req.body;
@@ -51,12 +81,40 @@ router.post('/upload', uploadCloud.single('photo'), isLoggedIn, (req, res, next)
   })
 });
 
-router.get('/profile', (req, res, next) => {
-  res.render('profile');
+router.get('/profile', isLoggedIn, (req, res, next) => {
+  console.log('dontthinkwe ar ehere ')
+  Story.find({user_id:req.user._id}).then(userStories=>{ //Find all stories that belong to user
+    User.findOne({'_id': req.user._id})
+    .then(theUser => {
+      console.log(212313,theUser, userStories)
+      // console.log('Retrieved books from DB:', allTheBooksFromDB);
+      res.render('profile', { user: theUser, stories:userStories}); //Sent those stories to hbs file 
+    })
+    .catch(error => {
+      console.log('Error while getting the books from the DB: ', error);
+    })
+  })
+
 });
 
+// router.get('/movie/:id', (req, res, next) => {
+//   Movie.findOne({'_id': req.params.id})
+//     .then(theMovie => {
+//     console.log('theMovie',theMovie)
+//     console.log(req.params.movieId);
+//     res.render('movie-details', { movie :theMovie })
+//   })
+//   .catch(error => {
+//     console.log('Error while retrieving movie details: ', error);
+//   })
+// });
 
-
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    // can't access session here
+    res.redirect("/login");
+  });
+});
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())

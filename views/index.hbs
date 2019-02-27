@@ -9,8 +9,8 @@
 
 {{#each storiesToHBS}}
   <div class="responsive story">
-    <img src="{{this.image}}">
-    <a href="story" class="bottomRight"><div>{{title}}</div></a>
+    <img src="{{image}}">
+    <a href="story/{{_id}}" class="bottomRight"><div>{{title}}</div></a>
   </div>
 {{else}}
   <p>There are no posts to show right now!</p>

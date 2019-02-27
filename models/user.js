@@ -9,6 +9,7 @@ const userSchema = new Schema({
   avatarURL: {
     type: String, default: '/images/defaultUser.jpeg'
   },
+  stories: Array,
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });
