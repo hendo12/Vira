@@ -21,7 +21,19 @@
       </form>
   </li>
 {{/each}}
-{{!-- for each of the posted stories, also include a delete function! --}}
+
+
+<br><br>
+
+<label for="myComments">My Comments</label>
+
+{{#each comments}}
+  <li>{{comment}} 
+      <form action="delete/{{_id}}" method="POST">
+        <button>Delete</button>
+      </form>
+  </li>
+{{/each}}
 
 <br><br>
 

@@ -5,7 +5,8 @@ const commentSchema = new Schema({
   user_id: String,
   links: String,
   comment: String,
-  points: Number
+  points: Number,
+  storyId: {type:Schema.Types.ObjectId, ref:"Story"}
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });

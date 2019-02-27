@@ -1,19 +1,19 @@
 <div class="story">
-  <img src="{{story.image}}">Story image
+  <img src="{{story.image}}">
   <br><br>
 
-  <label for="title">Title {{story.title}}</label>
+  <label for="title">{{story.title}}</label>
   <br><br>
   
 
-  <label for="description">Description{{story.description}}</label>
+  <label for="description">{{story.description}}</label>
   <br><br>
   <br><br>
 
-  <label for="sources">Sources {{story.sources}}</label>
+  <label for="sources"> {{story.sources}}</label>
   <br><br>
 
-  <label for="points">Points</label>
+  <label for="points"></label>
   <br><br>
 
 </div>
@@ -21,13 +21,23 @@
 <div class="comments">
   <label for="comment">Comment</label>
   <br><br>
-  <input id="comment" type="comment" name="comment" placeholder="Insert comment here">
   <br><br>
 
-  <button>Submit</button>
+  <form action="/story/{{story._id}}" method="POST">
+        <input id="comment" type="comment" name="comment" placeholder="Insert comment here">
+        <button>Submit</button>
+  </form>
   <br><br>
   <br><br>
 
   <label for="comments">All Comments</label>
+
+  {{#each comment}}
+  <li>{{username}} {{comment}} 
+      <form action="delete/{{_id}}" method="POST">
+        <button>Delete</button>
+      </form>
+  </li>
+{{/each}}
 </div>
 

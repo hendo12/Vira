@@ -7,7 +7,9 @@ const storySchema = new Schema({
   description: String,
   sources: String,
   image: String, 
-  points: Number
+  points: Number,
+  commentId: {type:Schema.Types.ObjectId, ref:"Comment"}
+
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });

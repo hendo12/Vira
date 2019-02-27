@@ -27,10 +27,14 @@ router.get('/upload', isLoggedIn, (req, res, next) => {
             //y98gig8472gyu23gg
             //story/profile
 router.get('/story/:watermelon', (req, res, next) => {
+
   Story.findOne({'_id': req.params.watermelon})
   .then(theStory => {
-    console.log(444444, req.params.storyId)
-    res.render('story', { story: theStory });
+    console.log(444444, theStory)
+    //We can find all the comments with teh story's id, theStory_id
+    Comment.find({storyId:theStory._id}).then(comments => {
+      res.render('story', { story: theStory, comment:comments });
+    })
   })
   .catch(error => {
     console.log('Error while retrieving story: ', error);
@@ -39,13 +43,20 @@ router.get('/story/:watermelon', (req, res, next) => {
 
 //post comment on story
 
-// router.post('/story/:id', isLoggedIn, (req, res, next) => {
-//   const comment = new Comment({user_id, comment})
-//   comment.save()
-//   .then(commentSaved => {
-//     res.redirect()
-//   })
-// })
+router.post('/story/:id', isLoggedIn, (req, res, next) => {
+  console.log(req.body, req.params, req.user, 'idk what is going on???')
+  let storyId = req.params.id;
+  let user_id = req.user._id;
+  let username = req.user.username;
+  let comment = req.body.comment;
+
+
+  const commentToSave = new Comment({user_id, comment, storyId, username})
+  commentToSave.save()
+  .then(commentSaved => {
+    res.redirect('back')
+  })
+})
 
 //Edit story
 
@@ -83,7 +94,7 @@ router.post('/upload', uploadCloud.single('photo'), isLoggedIn, (req, res, next)
 
 router.get('/profile', isLoggedIn, (req, res, next) => {
   console.log('dontthinkwe ar ehere ')
-  Story.find({user_id:req.user._id}).then(userStories=>{ //Find all stories that belong to user
+  Story.find({user_id:req.user._id}).then(userStories => { //Find all stories that belong to user
     User.findOne({'_id': req.user._id})
     .then(theUser => {
       console.log(212313,theUser, userStories)
@@ -94,7 +105,6 @@ router.get('/profile', isLoggedIn, (req, res, next) => {
       console.log('Error while getting the books from the DB: ', error);
     })
   })
-
 });
 
 // router.get('/movie/:id', (req, res, next) => {
