@@ -85,8 +85,11 @@ router.post('/story/:id', isLoggedIn, (req, res, next) => {
 router.post('/delete/:id', (req, res, next) => { //Listengin to profile.hbs for the acton 'delete/someid8787huhu'
   Story.remove({'_id': req.params.id}) //remove story by id
   .then(theStory => {
-    console.log(444444, req.params.storyId)
-    res.redirect('../profile');
+    Comment.remove({'_id':req.params.id})
+    .then(theComment => { 
+      console.log(444444, req.params.storyId)
+      res.redirect('../profile');
+    })
   })
   .catch(error => {
     console.log('Error while deleting story: ', error);
