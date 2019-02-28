@@ -5,15 +5,34 @@
 
 <h2>Top Stories</h2>
  
-{{#each storiesToHBS}}
-  <div class="responsive story container-fluid">
+{{!-- {{#each storiesToHBS}}
+  <div class="story jumbotron">
     <img src="{{image}}">
-    <a href="story/{{_id}}" class="bottomRight"><div>{{title}}</div></a>
+    <a href="story/{{_id}}"><div class="bottomRight">{{title}}</div></a>
+  </div>
+{{else}}
+  <p>There are no posts to show right now!</p>
+{{/each}} --}}
+
+{{#each storiesToHBS}}
+  <div class="story card bg-dark text-white container-fluid">
+    <img class="card-img" src="{{image}}">
+    <div class="card-img-overlay">
+      <a href="story/{{_id}}" class="card-title"><h3>{{title}}</h3></a>
+    </div>
   </div>
 {{else}}
   <p>There are no posts to show right now!</p>
 {{/each}}
 
+{{!-- <div class="card bg-dark text-white">
+  <img class="card-img" src=".../100px270/#55595c:#373a3c/text:Card image" alt="Card image">
+  <div class="card-img-overlay">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">Last updated 3 mins ago</p>
+  </div>
+</div> --}}
 
 <br><br>
 

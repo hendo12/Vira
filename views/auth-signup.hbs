@@ -1,22 +1,68 @@
 <!-- views/auth/signup.hbs -->
-<h2>Signup</h2>
+<div id="signup" class="text-center">
+  <div class="col-md-6 mx-auto text-center">
+    <div class="header-title">
+      <h1 class="wv-heading--title text-center">Check out VIRA — it’s free!</h1>
+    </div>
+  </div>
 
-<form action="/signup" method="POST" id="form-container">
-  <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
-  <br><br>
-  <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <div class="myform form ">
+        <form action="/signup" method="POST" id="basic-form-container" class="container">
+    
+          <label for="username">Username</label>
+          <br>
+          <input id="username" type="text" name="username" placeholder="TobiasFunke">
+          <br><br>
+          <label for="password">Password</label>
+          <br>
+          <input id="password" type="password" name="password" placeholder="Your password">
 
-  {{#if message}}
-    <div class="error-message">{{ message }}</div>
-  {{/if}}
-  <br><br>
+          {{#if message}}
+            <div class="error-message">{{ message }}</div>
+          {{/if}}
+          <br><br>
 
-  <button>Create account</button>
+          <button class="btn btn-raised btn-primary">Create account</button>
 
-  <p class="account-message">
-    Do you already have an account?
-    <a href="/login">Login</a>
-  </p>
-</form>
+          <div class="form-group" id="google-form-container">
+            <label>OR</label>
+            <a class="btn btn-block g-button" href="#">
+            <i class="fa fa-google"></i> Sign up with Google
+            </a>
+          </div>
+          <p class="small mt-3">By signing up, you are indicating that you have read and agree to the <a href="#" class="ps-hero__content__link">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>
+          <p class="account-message">Already have an account?
+            <br>
+            <a href="/login">Login</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row text-center benefits">
+  <div class="col-md-4 card">
+    <div class="card-body">
+      <h2 class="card-title">Anonymous</h2>
+      <p class="card-text ">New accounts are anonymous by default, allowing content creators to publish the truth without fear of repurcussion.</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 card">
+    <div class="card-body">
+      <h2 class="card-title">No Middle Man</h2>
+      <p class="card-text ">Giving content creators the ability to sell content directly to users improves censorship resistance.</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 card">
+    <div class="card-body">
+      <h2 class="card-title">Untraceable Payments</h2>
+      <p class="card-text">All payments made in Bitcoin are passed through a tumbler before being transferred to a users private wallet, allowing content creators to withdraw money safely and anonymously.</p>
+    </div>
+  </div>
+</div>
+

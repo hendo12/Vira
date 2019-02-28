@@ -2,26 +2,53 @@
   margin: 0;
   padding: 0; }
 
-body {
-  padding: 10px 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
-
-a {
-  color: #00B7FF; }
-
 nav {
   display: flex;
   justify-content: space-between;
   font-size: 1.3em; }
+
+input {
+  border-radius: 5px; }
 
 .story {
   padding: 10px 0;
   position: relative; }
 
 .story img {
-  width: 100%; }
+  width: auto;
+  max-height: 600px; }
 
 .bottomRight {
   position: absolute; }
+
+.btn-primary, .g-button {
+  background-color: #BE8CBE; }
+
+.card p {
+  padding: 20px 0px;
+  text-align: center; }
+
+.card-body {
+  margin: 0 auto; }
+
+.card-title a {
+  color: white;
+  text-shadow: 1px 1px #6a6c70; }
+
+#signup, #login {
+  height: 100%;
+  background-image: url("../images/signup.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  height: 100%;
+  color: white;
+  text-shadow: 1px 1px #6a6c70; }
+
+#signup h1, #login h1, .benefits {
+  padding-top: 50px; }
+
+#basic-form-container, #google-form-container, #signup label, #login label {
+  padding: 10px 0px; }
 
 /*# sourceMappingURL=style.css.map */
