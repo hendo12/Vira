@@ -15,17 +15,14 @@ input {
 
 .story {
   padding: 10px 0;
-  position: relative;
+  // height: 200px;
+
 }
 
-.story img {
-  width: auto;
-  max-height: 600px;
-}
-
-.bottomRight {
-  position: absolute;
-}
+// .story img {
+//   width: auto;
+//   max-height: 600px;
+// }
 
 .btn-primary, .g-button {
   background-color: #BE8CBE;
@@ -43,6 +40,31 @@ input {
 .card-title a {
   color: white;
   text-shadow: 1px 1px rgb(106, 108, 112);
+}
+
+.story-card{
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+  height: 60vh;
+  // width: 300px;
+
+}
+
+.story-card img{
+  width: 300px;
+  height: 200px;
+}
+
+
+
+.story-row{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.story-card h3{
+  width: 300px;
 }
 
 

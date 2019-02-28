@@ -14,16 +14,18 @@
   <p>There are no posts to show right now!</p>
 {{/each}} --}}
 
-{{#each storiesToHBS}}
-  <div class="story card bg-dark text-white container-fluid">
-    <img class="card-img" src="{{image}}">
-    <div class="card-img-overlay">
-      <a href="story/{{_id}}" class="card-title"><h3>{{title}}</h3></a>
-    </div>
+<div class="story-row jumbotron">
+  {{#each storiesToHBS}}
+  <div class="story-card">
+    <a href="story/{{_id}}" class="card-title">
+    <h3>{{title}}</h3>
+    </a>
+    <img src="{{image}}" >
   </div>
-{{else}}
+  {{else}}
   <p>There are no posts to show right now!</p>
-{{/each}}
+  {{/each}}
+</div>
 
 {{!-- <div class="card bg-dark text-white">
   <img class="card-img" src=".../100px270/#55595c:#373a3c/text:Card image" alt="Card image">
@@ -34,32 +36,6 @@
   </div>
 </div> --}}
 
-<br><br>
-
-<label for="Trending">Trending</label>
-<div class="resonsive">
-  <div>your content</div>
-  <div>your content</div>
-  <div>your content</div>
-</div>
-
-<br><br>
-
-<label for="For You">For You</label>
-<div class="resonsive">
-  <div>your content</div>
-  <div>your content</div>
-  <div>your content</div>
-</div>
-
-<br><br>
-
-<label for="Newest Stories">Newest Stories</label>
-<div class="resonsive">
-  <div>your content</div>
-  <div>your content</div>
-  <div>your content</div>
-</div>
 
 
 
