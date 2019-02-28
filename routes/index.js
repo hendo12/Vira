@@ -26,20 +26,36 @@ router.get('/upload', isLoggedIn, (req, res, next) => {
 });
             //y98gig8472gyu23gg
             //story/profile
-router.get('/story/:watermelon', (req, res, next) => {
-
-  Story.findOne({'_id': req.params.watermelon})
-  .then(theStory => {
+router.get('/story/:watermelon', isLoggedIn, (req, res, next) => {
+  Story.findOne({'_id': req.params.watermelon}).then(theStory => {
     console.log(444444, theStory)
     //We can find all the comments with teh story's id, theStory_id
-    Comment.find({storyId:theStory._id}).then(comments => {
-      res.render('story', { story: theStory, comment:comments });
+    Comment.find({storyId:theStory._id}).then(theUser => {
+      console.log(req.body, '666666666666666666666666666')
+      Comment.find({user_id:req.user._id}).populate('user_id').then(allComments => {
+        console.log('allComments',allComments)
+      res.render('story', { user: theUser, story: theStory, allComments:allComments });
+      })
+    }).catch(error => {
+    console.log('Error while retrieving story: ', error);
     })
   })
-  .catch(error => {
-    console.log('Error while retrieving story: ', error);
-  })
 });
+
+// router.get('/story/:watermelon', (req, res, next) => {
+//   Story.findOne({'_id': req.params.watermelon}).then(theStory => {
+//     console.log(444444, theStory)
+//     //We can find all the comments with teh story's id, theStory_id
+//     Comment.find({storyId:theStory._id}).then(theUser => {
+//       console.log(req.body, '666666666666666666666666666')
+//       Comment.find({user_id:req.user._id}).then(comments => {
+//       res.render('story', { user: theUser, story: theStory, comment:comments });
+//       })
+//     }).catch(error => {
+//     console.log('Error while retrieving story: ', error);
+//     })
+//   })
+// });
 
 //post comment on story
 
@@ -83,8 +99,7 @@ router.post('/upload', uploadCloud.single('photo'), isLoggedIn, (req, res, next)
   const user_id = req.user._id;
   console.log(req.body, req.file)
   const story = new Story({title, description, sources, image, user_id})
-  story.save()
-  .then(storySaved => {
+  story.save().then(storySaved => {
     res.redirect('/');
   })
   .catch(error => {
@@ -106,18 +121,6 @@ router.get('/profile', isLoggedIn, (req, res, next) => {
     })
   })
 });
-
-// router.get('/movie/:id', (req, res, next) => {
-//   Movie.findOne({'_id': req.params.id})
-//     .then(theMovie => {
-//     console.log('theMovie',theMovie)
-//     console.log(req.params.movieId);
-//     res.render('movie-details', { movie :theMovie })
-//   })
-//   .catch(error => {
-//     console.log('Error while retrieving movie details: ', error);
-//   })
-// });
 
 router.get("/logout", (req, res, next) => {
   req.session.destroy((err) => {

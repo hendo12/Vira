@@ -32,8 +32,8 @@
 
   <label for="comments">All Comments</label>
 
-  {{#each comment}}
-  <li>{{username}} {{comment}} 
+  {{#each allComments}}
+  <li>{{user_id.username}} {{comment}} 
       <form action="delete/{{_id}}" method="POST">
         <button>Delete</button>
       </form>
