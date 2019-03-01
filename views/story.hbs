@@ -1,43 +1,34 @@
 <div class="story">
-  <img class="jumbotron" src="{{story.image}}">
+  <div id="story-img">
+    <img class="jumbotron" src="{{story.image}}">
+  </div>
   <br><br>
 
   <h3>{{story.title}}</h3>
-  <br><br>
-  
+  <span> Posted by {{user_id.username}}</span>
 
   <p>{{story.description}}</p>
-  <br><br>
-  <br><br>
-
-  <label for="sources"> {{story.sources}}</label>
-  <br><br>
-
-  <label for="points"></label>
-  <br><br>
+  
+  <br>
 
 </div>
 
 <div class="comments">
   <label for="comment">Comment</label>
-  <br><br>
-  <br><br>
-
   <form action="/story/{{story._id}}" method="POST">
-        <input id="comment" type="comment" name="comment" placeholder="Insert comment here">
-        <button>Submit</button>
+    <textarea id="comment" type="comment" name="comment" placeholder="Insert comment here"rows="8" cols="50"></textarea>
+    <br>
+    <button>Submit</button>
   </form>
-  <br><br>
-  <br><br>
+  <br>
 
   <label for="comments">All Comments</label>
 
   {{#each allComments}}
-  <li>{{user_id.username}} {{comment}} 
-      <form action="delete/{{_id}}" method="POST">
-        <button>Delete</button>
-      </form>
+  <li id="storyComments">
+    Posted by {{user_id.username}}: {{comment}}
   </li>
+  <br>
 {{/each}}
 </div>
 

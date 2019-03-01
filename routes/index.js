@@ -13,11 +13,51 @@ const Comment = require("../models/comments");
 
 const router  = express.Router();
 
-/* GET home page */
+/* GET home page 
+ries  [ { _id: 5c788d9e4c830d81ffd15a28,
+    title: 'Brian Flores new coach of Dolphins',
+    image:
+     'http://res.cloudinary.com/dlngr7ftb/image/upload/v1551382727/images/brian%20flores.jpg.jpg',
+    user_id: 5c780992c630eb001766b9ea,
+    created_at: 2019-03-01T01:40:46.187Z,
+    updated_at: 2019-03-01T01:40:46.187Z,
+    __v: 0 },
+  { _id: 5c79387c31f7ad8a5f33003e,
+    title: 'Tesla’s promised $35,000 Model 3 is finally here',
+    image:
+     'http://res.cloudinary.com/dlngr7ftb/image/upload/v1551448190/images/tesla.jpeg.jpg',
+    user_id: 5c780992c630eb001766b9ea,
+    created_at: 2019-03-01T13:49:48.704Z,
+    updated_at: 2019-03-01T13:49:48.704Z,
+    __v: 0 },
+  { _id: 5c793c8f31f7ad8a5f33003f,
+    title: 'Open Source Front End Bootcamp',
+    image:
+     'http://res.cloudinary.com/dlngr7ftb/image/upload/v1551390639/images/microsoftwindowsnewlogo-2880x1800.jpg.jpg',
+    user_id: 5c780992c630eb001766b9ea,
+    created_at: 2019-03-01T14:07:11.952Z,
+    updated_at: 2019-03-01T14:07:11.952Z,
+    __v: 0 },
+  { _id: 5c793d0f31f7ad8a5f330040,
+    title: 'BMW uses Blockchain',
+    image:
+     'http://res.cloudinary.com/dlngr7ftb/image/upload/v1551449361/images/bmw.jpeg.jpg',
+    user_id: 5c780992c630eb001766b9ea,
+    created_at: 2019-03-01T14:09:19.110Z,
+    updated_at: 2019-03-01T14:09:19.110Z,
+    __v: 0 } ]*/
 router.get('/', (req, res, next) => {
+  console.log('in home route ', req.query)
   Story.find().then(storiesFromTheDb =>{
-    console.log(storiesFromTheDb);
-    res.render('index', {storiesToHBS:storiesFromTheDb});
+    console.log('all the stories ',storiesFromTheDb)
+    var filteredData = storiesFromTheDb;
+    if(req.query.search){
+    filteredData = storiesFromTheDb.filter(function(obj) {
+      return obj.title.toLowerCase().includes(req.query.search.toLowerCase())
+    });
+  }
+    
+    res.render('index', {storiesToHBS:filteredData});
   })
 });
 
@@ -28,12 +68,9 @@ router.get('/upload', isLoggedIn, (req, res, next) => {
             //story/profile
 router.get('/story/:watermelon', isLoggedIn, (req, res, next) => {
   Story.findOne({'_id': req.params.watermelon}).then(theStory => {
-    console.log(444444, theStory)
     //We can find all the comments with teh story's id, theStory_id
     Comment.find({storyId:theStory._id}).then(theUser => {
-      console.log(req.body, '666666666666666666666666666')
       Comment.find({user_id:req.user._id}).populate('user_id').then(allComments => {
-        console.log('allComments',allComments)
       res.render('story', { user: theUser, story: theStory, allComments:allComments });
       })
     }).catch(error => {
@@ -60,7 +97,7 @@ router.get('/story/:watermelon', isLoggedIn, (req, res, next) => {
 //post comment on story
 
 router.post('/story/:id', isLoggedIn, (req, res, next) => {
-  console.log(req.body, req.params, req.user, 'idk what is going on???')
+  //console.log(req.body, req.params, req.user, 'idk what is going on???')
   let storyId = req.params.id;
   let user_id = req.user._id;
   let username = req.user.username;
@@ -73,6 +110,51 @@ router.post('/story/:id', isLoggedIn, (req, res, next) => {
     res.redirect('back')
   })
 })
+
+
+
+router.post('/comment/:id/edit', (req, res, next) => {
+  Comment.findById(req.params.id)
+  .then(commentFromTheDB => {
+    commentFromTheDB.comment = req.body.newComment
+    commentFromTheDB.save((err) => {
+      if(!err){
+        res.json('updated' == true);
+      }
+    })
+  })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// router.post('/comment/:id/edit', (req, res, next) => {
+//   console.log(req.body, req.params, 'never gets old')
+//   Comment.findById(req.params.id)
+//   .then(commentFromDB=>{
+//     commentFromDB.comment = req.body.newComment
+//     // user.comment = req.body.comment;
+//     commentFromDB.save((err)=>{
+//       if(!err){
+//         res.json({ 'updated': true })
+//       }
+//     })
+//   })
+// })
 
 //Edit story
 
@@ -87,7 +169,6 @@ router.post('/delete/:id', (req, res, next) => { //Listengin to profile.hbs for 
   .then(theStory => {
     Comment.remove({'_id':req.params.id})
     .then(theComment => { 
-      console.log(444444, req.params.storyId)
       res.redirect('../profile');
     })
   })
@@ -111,17 +192,33 @@ router.post('/upload', uploadCloud.single('photo'), isLoggedIn, (req, res, next)
 });
 
 router.get('/profile', isLoggedIn, (req, res, next) => {
-  console.log('dontthinkwe ar ehere ')
+  //console.log('dontthinkwe ar ehere ')
   Story.find({user_id:req.user._id}).then(userStories => { //Find all stories that belong to user
     User.findOne({'_id': req.user._id}).then(theUser => {
       Comment.find({user_id:req.user._id}).then(userComments => {
-        console.log(212313,theUser, userStories)
+        //console.log(212313,theUser, userStories)
         // console.log('Retrieved books from DB:', allTheBooksFromDB);
         res.render('profile', { user: theUser, stories:userStories, comments:userComments}); //Sent those stories to hbs file 
       })
     }).catch(error => {
       console.log('Error while getting the books from the DB: ', error);
     })
+  })
+});
+
+router.post('/profile', uploadCloud.single('photo'), isLoggedIn, (req, res, next) => {
+  console.log(req.body, req.file)
+  const profileImageURL = req.file.url; //read the error couldnt read property url of undefined 
+  const user_id = req.user._id;
+  User.findOne({_id: req.user._id}).then(theUser => { //found user by id 
+    console.log(theUser)
+    theUser.avatarURL = profileImageURL; //referencing avatarurl in user objet and setting equal to new image
+    theUser.save(()=>{    //save new image
+      res.redirect('back')
+    })
+  })
+  .catch(error => {
+    console.log(error);
   })
 });
 

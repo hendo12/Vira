@@ -4,24 +4,16 @@
 <br><br>
 
 <h2>Top Stories</h2>
- 
-{{!-- {{#each storiesToHBS}}
-  <div class="story jumbotron">
-    <img src="{{image}}">
-    <a href="story/{{_id}}"><div class="bottomRight">{{title}}</div></a>
-  </div>
-{{else}}
-  <p>There are no posts to show right now!</p>
-{{/each}} --}}
 
 <div class="story-row jumbotron row">
   {{#each storiesToHBS}}
   <div class="story-card col-md-4">
     <a href="story/{{_id}}" class="card-title">
-    <h3>{{title}}</h3>
+      <h3>{{title}}</h3>
     </a>
     <img src="{{image}}" >
   </div>
+
   {{else}}
   <p>There are no posts to show right now!</p>
   {{/each}}

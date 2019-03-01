@@ -38,23 +38,22 @@
           <a class="nav-link disabled" href="../logout">Logout</a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <form class="form-inline my-2 my-lg-0" method="GET" action="../">
+        <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search">
+        <button id="search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
   </nav>
 
   <div class="container">
-    
     {{{body}}}
-
   </div>
+  
   <script src="/javascripts/script.js"></script>
 </body>
 
-<footer class="page-footer font-small blue pt-4">
-  <div class="footer-copyright text-center py-3">© 2019 Copyright:
+<footer >
+  <div ">© 2019 Copyright:
     <a href="https://mdbootstrap.com/education/bootstrap/"> vira.com</a>
   </div>
 </footer>

@@ -1,24 +1,19 @@
 <h2>Upload New Story</h2>
-<br><br>
+<br>
 
 <form action="/upload" method="POST" id="form-container" enctype="multipart/form-data">
   <label for="title">Title</label>
-  <br><br>
-  <input id="title" type="text" name="title" placeholder="The Human Torch was approved a bank loan">
+  <br>
+  <textarea id="title" type="title" name="title" placeholder="Insert title here"rows="1.5" cols="30"></textarea>
   <br><br>
 
   <label for="description">Description</label>
-  <br><br>
-  <input id="description" width="48" height="48" type="text" name="text" placeholder="Story here">
+  <br>
+  <textarea id="comment" type="comment" name="comment" placeholder="Insert story here"rows="5" cols="50"></textarea>
 
   {{#if message}}
     <div class="error-message">{{ message }}</div>
   {{/if}}
-  <br><br>
-
-  <label for="sources">Sources</label>
-  <br><br>
-  <input id="sources" type="text" name="sources" placeholder="Place links here">
   <br><br>
 
   {{!-- <label for="images">Image</label>
@@ -29,9 +24,11 @@
   <button>Submit</button> --}}
 
   <label for="image">Image</label>
-  <br><br>
+  <br>
+
   <input type="file" name="photo">
-  <br><br>
+  <br><br><br>
+  
   <input type="submit" value="Save">
 
 </form>

@@ -1,47 +1,63 @@
-<h2>{{user.username}}</h2>
 
-<img src="/images/defaultUser.jpeg">
+<div>
 
-<div class="form-group">
-  <label for="exampleInputFile" class="bmd-label-floating">Edit Photo</label>
-  <input type="file" class="form-control-file" id="exampleInputFile">
-  
+
+  <div class="form-group profilePhoto">
+    <div class="user">
+      <div class="profilePic" style="background-image:url({{user.avatarURL}})">
+      <h2>User: {{user.username}}</h2>
+    </div>
+
+    <br>
+    <form  action="/profile" value="Save" method="POST" enctype="multipart/form-data">
+    <label for="exampleInputFile" class="bmd-label-floating">Edit Photo</label>
+    <input type="file" name="photo" class="form-control-file" id="exampleInputFile">
+
+      <button type="submit">Save</button>
+    </form>
+  </div>
+
+  <br><br>
+
+  <div class="userStories">
+    <label for="myStories">My Posted Stories</label>
+
+    {{#each stories}}
+      <li>{{title}} 
+          <form action="delete/{{_id}}" method="POST">
+            <button>Delete</button>
+          </form>
+      </li>
+    {{/each}}
+  </div>
+
+  <br><br>
+
+  <label for="myComments">My Comments</label>
+  <br>
+  <span class="edit-text">click text to edit</span>
+
+  {{#each comments}}
+      <li><span class="comment-inline" data-id={{_id}} contenteditable="true">{{comment}}</span> 
+        <form action="delete/{{_id}}" method="POST">
+          <button>Delete</button>
+        </form>
+      </li>
+  {{/each}}
+
+  <script>
+  $('.comment-inline').blur(function(e){
+    //console.log(e,this);
+    console.log('save ',$(this).text())
+    $.post(`/comment/${$(this).data('id')}/edit`, {newComment:$(this).text()}, function(res){
+      console.log(res, 'saved')
+      $('body').append(`<span class="saved">comment saved</span>`)
+    })
+  })
+
+  //$.post(url,{data:data}, function(){})
+  </script>
+
 </div>
 
-
-
-<br><br>
-
-
-
-<label for="reputation">Reputation: </label>
-
-<br><br>
-
-<label for="myStories">My Posted Stories</label>
-
-{{#each stories}}
-  <li>{{title}} 
-      <form action="delete/{{_id}}" method="POST">
-        <button>Delete</button>
-      </form>
-  </li>
-{{/each}}
-
-
-<br><br>
-
-<label for="myComments">My Comments</label>
-
-{{#each comments}}
-  <li>{{comment}} 
-      <form action="delete/{{_id}}" method="POST">
-        <button>Delete</button>
-      </form>
-  </li>
-{{/each}}
-
-<br><br>
-
-<label for="myStories">My Saved Stories</label>
 
