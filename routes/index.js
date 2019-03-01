@@ -13,39 +13,6 @@ const Comment = require("../models/comments");
 
 const router  = express.Router();
 
-/* GET home page 
-ries  [ { _id: 5c788d9e4c830d81ffd15a28,
-    title: 'Brian Flores new coach of Dolphins',
-    image:
-     'http://res.cloudinary.com/dlngr7ftb/image/upload/v1551382727/images/brian%20flores.jpg.jpg',
-    user_id: 5c780992c630eb001766b9ea,
-    created_at: 2019-03-01T01:40:46.187Z,
-    updated_at: 2019-03-01T01:40:46.187Z,
-    __v: 0 },
-  { _id: 5c79387c31f7ad8a5f33003e,
-    title: 'Tesla’s promised $35,000 Model 3 is finally here',
-    image:
-     'http://res.cloudinary.com/dlngr7ftb/image/upload/v1551448190/images/tesla.jpeg.jpg',
-    user_id: 5c780992c630eb001766b9ea,
-    created_at: 2019-03-01T13:49:48.704Z,
-    updated_at: 2019-03-01T13:49:48.704Z,
-    __v: 0 },
-  { _id: 5c793c8f31f7ad8a5f33003f,
-    title: 'Open Source Front End Bootcamp',
-    image:
-     'http://res.cloudinary.com/dlngr7ftb/image/upload/v1551390639/images/microsoftwindowsnewlogo-2880x1800.jpg.jpg',
-    user_id: 5c780992c630eb001766b9ea,
-    created_at: 2019-03-01T14:07:11.952Z,
-    updated_at: 2019-03-01T14:07:11.952Z,
-    __v: 0 },
-  { _id: 5c793d0f31f7ad8a5f330040,
-    title: 'BMW uses Blockchain',
-    image:
-     'http://res.cloudinary.com/dlngr7ftb/image/upload/v1551449361/images/bmw.jpeg.jpg',
-    user_id: 5c780992c630eb001766b9ea,
-    created_at: 2019-03-01T14:09:19.110Z,
-    updated_at: 2019-03-01T14:09:19.110Z,
-    __v: 0 } ]*/
 router.get('/', (req, res, next) => {
   console.log('in home route ', req.query)
   Story.find().then(storiesFromTheDb =>{
@@ -56,7 +23,6 @@ router.get('/', (req, res, next) => {
       return obj.title.toLowerCase().includes(req.query.search.toLowerCase())
     });
   }
-    
     res.render('index', {storiesToHBS:filteredData});
   })
 });
@@ -64,8 +30,7 @@ router.get('/', (req, res, next) => {
 router.get('/upload', isLoggedIn, (req, res, next) => {
   res.render('upload');
 });
-            //y98gig8472gyu23gg
-            //story/profile
+   
 router.get('/story/:watermelon', isLoggedIn, (req, res, next) => {
   Story.findOne({'_id': req.params.watermelon}).then(theStory => {
     //We can find all the comments with teh story's id, theStory_id
@@ -78,23 +43,6 @@ router.get('/story/:watermelon', isLoggedIn, (req, res, next) => {
     })
   })
 });
-
-// router.get('/story/:watermelon', (req, res, next) => {
-//   Story.findOne({'_id': req.params.watermelon}).then(theStory => {
-//     console.log(444444, theStory)
-//     //We can find all the comments with teh story's id, theStory_id
-//     Comment.find({storyId:theStory._id}).then(theUser => {
-//       console.log(req.body, '666666666666666666666666666')
-//       Comment.find({user_id:req.user._id}).then(comments => {
-//       res.render('story', { user: theUser, story: theStory, comment:comments });
-//       })
-//     }).catch(error => {
-//     console.log('Error while retrieving story: ', error);
-//     })
-//   })
-// });
-
-//post comment on story
 
 router.post('/story/:id', isLoggedIn, (req, res, next) => {
   //console.log(req.body, req.params, req.user, 'idk what is going on???')
@@ -111,8 +59,6 @@ router.post('/story/:id', isLoggedIn, (req, res, next) => {
   })
 })
 
-
-
 router.post('/comment/:id/edit', (req, res, next) => {
   Comment.findById(req.params.id)
   .then(commentFromTheDB => {
@@ -124,45 +70,6 @@ router.post('/comment/:id/edit', (req, res, next) => {
     })
   })
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// router.post('/comment/:id/edit', (req, res, next) => {
-//   console.log(req.body, req.params, 'never gets old')
-//   Comment.findById(req.params.id)
-//   .then(commentFromDB=>{
-//     commentFromDB.comment = req.body.newComment
-//     // user.comment = req.body.comment;
-//     commentFromDB.save((err)=>{
-//       if(!err){
-//         res.json({ 'updated': true })
-//       }
-//     })
-//   })
-// })
-
-//Edit story
-
-// router.push('/story/:id', (req, res, next) =>
-//   Story.findOneAndUpdate({'_id':req.params.id})
-//   .then())
-
-//delete story
 
 router.post('/delete/:id', (req, res, next) => { //Listengin to profile.hbs for the acton 'delete/someid8787huhu'
   Story.remove({'_id': req.params.id}) //remove story by id

@@ -1,11 +1,10 @@
 <div class="story">
-  <div id="story-img">
-    <img class="jumbotron" src="{{story.image}}">
+  <div class="jumbotron" id="story-img">
+    <img src="{{story.image}}">
   </div>
   <br><br>
 
   <h3>{{story.title}}</h3>
-  <span> Posted by {{user_id.username}}</span>
 
   <p>{{story.description}}</p>
   
@@ -16,7 +15,7 @@
 <div class="comments">
   <label for="comment">Comment</label>
   <form action="/story/{{story._id}}" method="POST">
-    <textarea id="comment" type="comment" name="comment" placeholder="Insert comment here"rows="8" cols="50"></textarea>
+    <textarea id="comment" type="comment" name="comment" placeholder="Insert comment here"rows="5" cols="50"></textarea>
     <br>
     <button>Submit</button>
   </form>
@@ -28,7 +27,7 @@
   <li id="storyComments">
     Posted by {{user_id.username}}: {{comment}}
   </li>
-  <br>
+  <hr>
 {{/each}}
 </div>
 
