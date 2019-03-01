@@ -9,7 +9,7 @@
 
   <label for="description">Description</label>
   <br>
-  <textarea id="comment" type="comment" name="comment" placeholder="Insert story here"rows="5" cols="50"></textarea>
+  <textarea id="comment" type="comment" name="description" placeholder="Insert story here"rows="5" cols="50"></textarea>
 
   {{#if message}}
     <div class="error-message">{{ message }}</div>
@@ -28,7 +28,7 @@
 
   <input type="file" name="photo">
   <br><br><br>
-  
-  <input type="submit" value="Save">
+
+  <input class="btn btn-success"type="submit" value="Save">
 
 </form>

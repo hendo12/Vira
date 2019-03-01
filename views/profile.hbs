@@ -12,38 +12,42 @@
     <form  action="/profile" value="Save" method="POST" enctype="multipart/form-data">
     <label for="exampleInputFile" class="bmd-label-floating">Edit Photo</label>
     <input type="file" name="photo" class="form-control-file" id="exampleInputFile">
-
+      <br>
       <button type="submit">Save</button>
     </form>
   </div>
 
-  <br><br>
+  <br>
 
   <div class="userStories">
     <label for="myStories">My Posted Stories</label>
 
     {{#each stories}}
-      <li>{{title}} 
+      <li class="noStyle"> {{title}} 
           <form action="delete/{{_id}}" method="POST">
             <button>Delete</button>
           </form>
       </li>
+      <hr>
     {{/each}}
   </div>
 
   <br><br>
 
-  <label for="myComments">My Comments</label>
-  <br>
-  <span class="edit-text">click text to edit</span>
+  <div class='userComments'>
+    <label for="myComments">My Comments</label>
+    <br>
+    <span class="edit-text">click text to edit</span>
 
-  {{#each comments}}
-      <li><span class="comment-inline" data-id={{_id}} contenteditable="true">{{comment}}</span> 
-        <form action="delete/{{_id}}" method="POST">
-          <button>Delete</button>
-        </form>
-      </li>
-  {{/each}}
+    {{#each comments}}
+        <li class="noStyle"><span class="comment-inline" data-id={{_id}} contenteditable="true">{{comment}}</span> 
+          <form action="delete/{{_id}}" method="POST">
+            <button>Delete</button>
+          </form>
+        </li>
+        <hr>
+    {{/each}}
+  </div>
 
   <script>
   $('.comment-inline').blur(function(e){

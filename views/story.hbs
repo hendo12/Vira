@@ -17,12 +17,11 @@
   <form action="/story/{{story._id}}" method="POST">
     <textarea id="comment" type="comment" name="comment" placeholder="Insert comment here"rows="5" cols="50"></textarea>
     <br>
-    <button>Submit</button>
+    <button class="btn btn-success">Submit</button>
   </form>
   <br>
 
   <label for="comments">All Comments</label>
-
   {{#each allComments}}
   <li id="storyComments">
     Posted by {{user_id.username}}: {{comment}}
