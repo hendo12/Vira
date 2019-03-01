@@ -66,6 +66,10 @@ input {
   display: flex;
   justify-content: center; }
 
+#storyImg {
+  width: 100%;
+  max-height: 500px; }
+
 #storyComments {
   list-style-type: none;
   text-indent: 20px; }

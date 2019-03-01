@@ -1,6 +1,6 @@
 <div class="story">
   <div class="jumbotron" id="story-img">
-    <img src="{{story.image}}">
+    <img id="storyImg"src="{{story.image}}">
   </div>
   <br><br>
 
@@ -15,7 +15,7 @@
 <div class="comments">
   <label for="comment">Comment</label>
   <form action="/story/{{story._id}}" method="POST">
-    <textarea id="comment" type="comment" name="comment" placeholder="Insert comment here"rows="5" cols="50"></textarea>
+    <textarea id="comment" type="comment" name="comment" placeholder="Insert comment here"rows="5" cols="35"></textarea>
     <br>
     <button class="btn btn-success">Submit</button>
   </form>
