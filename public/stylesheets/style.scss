@@ -37,27 +37,9 @@ footer{
   background-color: #eee;
 }
 
-// .profilePhoto {
-//   display: flex;
-
-// }
-
-
-// nav {
-//   display: flex;
-//   justify-content: space-between;
-//   font-size: 1.3em;
-// }
-
 input {
   border-radius: 5px;
 }
-
-// .story {
-//   padding: 10px 0;
-//   // height: 200px;
-
-// }
 
 .story img {
   width: auto;
@@ -66,27 +48,7 @@ input {
   max-height: 700px;
 }
 
-// .btn-primary, .g-button {
-//   background-color: #BE8CBE;
-// }
-
-// .card p {
-//  padding: 20px 0px;
-//  text-align: center;
-// }
-
-// .card-body {
-//   margin: 0 auto;
-// }
-
-// .card-title a {
-//   color: white;
-//   text-shadow: 1px 1px rgb(106, 108, 112);
-// }
-
-.story-card{
-  //width: 500px;
-  //height: 60vh;
+.story-card {
   margin-bottom: 5px;
 }
 
@@ -104,37 +66,12 @@ input {
   0% { opacity: 1; } 100% { opacity: 0; } 
 } 
 
-// .story-card img{
-//   width: 300px;
-//   height: 200px;
-// }
-
-
-
-// .story-row{
-//   display: flex;
-//   flex-wrap: wrap;
-// }
-
-// .story-card h3{
-//   width: 300px;
-// }
-
-
 #signup, #login {
   justify-content: center;
   text-align: center;
   padding: 200px 0px;
   background-color: #F0F0F2;
 }
-
-// #signup h1, #login h1, .benefits {
-//   padding-top: 50px;
-// }
-
-// #basic-form-container, #google-form-container, #signup label, #login label {
-//   padding: 10px 0px;
-// }
 
 #story-img {
   display: flex;
@@ -157,4 +94,8 @@ input {
   text-indent: 20px;
 }
 
+.jumbotron {
+  padding: 0px 5px;
+  margin: 0;
+}
 
